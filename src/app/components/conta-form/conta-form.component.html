@@ -1,0 +1,101 @@
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title">{{ title }}</h5>
+    <form [formGroup]="form">
+      <div class="mb-3">
+        <label for="cliente" class="form-label">Cliente*</label>
+        <input
+          type="text"
+          class="form-control"
+          id="cliente"
+          formControlName="cliente"
+        />
+      </div>
+
+      <div class="mb-3">
+        <label for="agencia" class="form-label">Agencia*</label>
+        <input
+          type="number"
+          class="form-control"
+          id="agencia"
+          formControlName="agencia"
+        />
+      </div>
+
+      <div class="mb-3">
+        <label for="numero" class="form-label">Numero da Conta*</label>
+        <input
+          type="text"
+          class="form-control"
+          id="numero"
+          formControlName="numero"
+        />
+      </div>
+
+      <div class="mb-3">
+        <label for="saldo" class="form-label">Saldo</label>
+        <input
+          type="number"
+          class="form-control"
+          id="saldo"
+          formControlName="saldo"
+        />
+      </div>
+
+      <button
+        type="submit"
+        class="btn btn-primary"
+        (click)="buscarClientePorNome()"
+      >
+        Enviar
+        <div
+          class="spinner-border spinner-border-sm"
+          role="status"
+          *ngIf="loading"
+        >
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      </button>
+      <button
+        type="submit"
+        class="btn btn-secondary mx-2"
+        (click)="fecharModal()"
+      >
+        Sair
+      </button>
+    </form>
+
+    <div
+      class="alert alert-success d-flex align-items-center mt-3"
+      role="alert"
+      *ngIf="success"
+    >
+      <svg
+        class="bi flex-shrink-0 me-2"
+        width="24"
+        height="24"
+        role="img"
+        aria-label="Success:"
+      >
+        <use xlink:href="#check-circle-fill" />
+      </svg>
+      <div>Operação realizada com sucesso!</div>
+    </div>
+    <div
+      class="alert alert-danger d-flex align-items-center mt-3"
+      role="alert"
+      *ngIf="error"
+    >
+      <svg
+        class="bi flex-shrink-0 me-2"
+        width="24"
+        height="24"
+        role="img"
+        aria-label="Warning:"
+      >
+        <use xlink:href="#exclamation-triangle-fill" />
+      </svg>
+      <div>Não foi possível realizar a operação!</div>
+    </div>
+  </div>
+</div>
