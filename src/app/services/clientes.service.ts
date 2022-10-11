@@ -18,7 +18,7 @@ export class ClientesService {
 
   buscarClientePorNome(nome: any) {
     return this.http.get<ICliente[]>(
-      `${this.api}/${this.endpoint}/buscarPorNome/${nome}`
+      `${this.api}/${this.endpoint}buscarPorNome/${nome}`
     );
   }
 
@@ -27,6 +27,7 @@ export class ClientesService {
   }
 
   save(data: Partial<ICliente>) {
+    // Se passou o ID no InitialState vc vai Editar se não vai cadastrar
     if (data.id) {
       return this.atualizarCliente(data);
     }

@@ -1,71 +1,128 @@
 <div class="row">
-  <div class="col-12">
-    <h2 class="pb-2 border-bottom">Clientes</h2>
-  </div>
-  <div class="col-12">
-    <a
-      class="btn btn-sm btn-dark mb-3"
-      (click)="openModalComponent(tiposMetodos.CADASTRAR)"
-      >Cadastrar</a
-    >
-    <table class="table table-striped table-sm">
-      <thead>
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">Nome</th>
-          <th scope="col">E-mail</th>
-          <th scope="col">Observações</th>
-          <th scope="col">Ações</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let cliente of clientes">
-          <td>{{ cliente?.id }}</td>
-          <td>{{ cliente?.nome }}</td>
-          <td>{{ cliente?.email }}</td>
-          <td>{{ cliente?.observacoes }}</td>
-          <td>
-            <div class="dropdown">
-              <button
-                class="btn btn-sm btn-outline-dark dropdown-toggle"
-                type="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                Ações
-              </button>
-              <ul class="dropdown-menu">
-                <li>
-                  <a
-                    class="dropdown-item btn-editar"
-                    (click)="
-                      openModalComponent(
-                        tiposMetodos.EDITAR,
-                        cliente.id,
-                        cliente.nome,
-                        cliente.cpf,
-                        cliente.email,
-                        cliente.observacoes
-                      )
-                    "
-                    >Editar</a
+  <div class="card">
+    <div class="card-body">
+      <h2 class="card-title align--contas">Clientes</h2>
+      <div class="col-12">
+        <a
+          class="btn btn-sm btn-secondary text-white mb-3"
+          (click)="openModalComponent(tiposMetodos.CADASTRAR)"
+          ><svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            fill="currentColor"
+            class="bi bi-person-plus-fill mb-1 mr-1"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"
+            />
+            <path
+              fill-rule="evenodd"
+              d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z"
+            />
+          </svg>
+          Cadastrar</a
+        >
+        <table class="table table-striped mt--2">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Nome</th>
+              <th scope="col">E-mail</th>
+              <th scope="col">Observações</th>
+              <th scope="col">Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              *ngFor="
+                let cliente of clientes
+                  | paginate: { itemsPerPage: 08, currentPage: p }
+              "
+            >
+              <td>{{ cliente?.id }}</td>
+              <td>{{ cliente?.nome }}</td>
+              <td>{{ cliente?.email }}</td>
+              <td>{{ cliente?.observacoes }}</td>
+              <td>
+                <div class="dropdown">
+                  <button
+                    class="btn btn-sm btn-outline-dark dropdown-toggle"
+                    type="button"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
                   >
-                </li>
-                <li>
-                  <a
-                    class="dropdown-item btn-excluir"
-                    (click)="deletarcliente(cliente.id)"
-                    >Excluir</a
-                  >
-                </li>
-              </ul>
-            </div>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+                    Ações
+                  </button>
+                  <ul class="dropdown-menu">
+                    <li>
+                      <a
+                        class="dropdown-item btn-editar fw-bold"
+                        (click)="
+                          openModalComponent(
+                            tiposMetodos.EDITAR,
+                            cliente.id,
+                            cliente.nome,
+                            cliente.cpf,
+                            cliente.email,
+                            cliente.observacoes
+                          )
+                        "
+                        ><svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="16"
+                          height="16"
+                          fill="currentColor"
+                          class="bi bi-pen"
+                          viewBox="0 0 16 16"
+                        >
+                          <path
+                            d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z"
+                          />
+                        </svg>
+                        Editar</a
+                      >
+                    </li>
+                    <li>
+                      <a
+                        class="dropdown-item btn-excluir text-danger fw-bold"
+                        (click)="openModalComponent(tiposMetodos.DELETAR, cliente.id)"
+                        ><svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="16"
+                          height="16"
+                          fill="currentColor"
+                          class="bi bi-trash"
+                          viewBox="0 0 16 16"
+                        >
+                          <path
+                            d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"
+                          />
+                          <path
+                            fill-rule="evenodd"
+                            d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"
+                          />
+                        </svg>
+                        Excluir</a
+                      >
+                    </li>
+                  </ul>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <pagination-controls
+      (pageChange)="p = $event"
+      previousLabel="Anterior"
+      nextLabel="Próximo"
+      *ngIf="clientes.length > 0"
+    ></pagination-controls>
+    <div class="spinner-border spinner-align" role="status" *ngIf="loading">
+      <span class="visually-hidden">Loading...</span>
+    </div>
   </div>
-</div>
-<div class="spinner-border spinner-align" role="status" *ngIf="loading">
-  <span class="visually-hidden">Loading...</span>
 </div>

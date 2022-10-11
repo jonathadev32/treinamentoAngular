@@ -20,7 +20,18 @@ export class LoginComponent implements OnInit {
     localStorage.removeItem('access_token');
   }
 
-  ngOnInit(): void {}
+  ngOnInit() {
+    const html = document.getElementsByTagName('html')[0];
+    html.classList.add('login');
+    const body = document.getElementsByTagName('body')[0];
+    body.classList.add('bg-login');
+  }
+  ngOnDestroy() {
+    const html = document.getElementsByTagName('html')[0];
+    html.classList.remove('login');
+    const body = document.getElementsByTagName('body')[0];
+    body.classList.remove('bg-login');
+  }
 
   form = this.formBuilder.group({
     email: ['', [Validators.required, Validators.email]],

@@ -1,20 +1,8 @@
-form {
-  margin-top: 2rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+.processo-logo {
+  width: 180px;
 }
 
-img {
-  width: 300px;
-}
-
-.card-tam {
-  left: 26%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 500px;
-  height: 200;
+.btn-theme {
+  color: white;
+  background-color: #004254;
 }

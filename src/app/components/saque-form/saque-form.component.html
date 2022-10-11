@@ -1,0 +1,50 @@
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title text-center">{{ title }}</h5>
+    <form [formGroup]="form">
+      <div class="mb-3">
+        <label for="agencia" class="form-label">Agencia*</label>
+        <input
+          type="text"
+          class="form-control"
+          id="agencia"
+          formControlName="agencia"
+        />
+      </div>
+
+      <div class="mb-3">
+        <label for="numero" class="form-label">Numero da Conta*</label>
+        <input
+          type="text"
+          class="form-control"
+          id="numero"
+          formControlName="numero"
+        />
+      </div>
+
+      <div class="mb-4">
+        <label for="valor" class="form-label">Valor</label>
+        <input
+          type="number"
+          class="form-control"
+          id="valor"
+          formControlName="valor"
+        />
+      </div>
+
+      <button type="submit" class="btn btn-primary" (click)="onSubmitSaque()">
+        Sacar
+        <div
+          class="spinner-border spinner-border-sm"
+          role="status"
+          *ngIf="loading"
+        >
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      </button>
+      <button type="submit" class="btn btn-danger mx-2" (click)="fecharModal()">
+        Sair
+      </button>
+    </form>
+  </div>
+</div>

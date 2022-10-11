@@ -1,0 +1,16 @@
+.background {
+  background-image: url("/assets/dark-material-bg.jpg");
+  display: flex;
+  height: 100vh;
+}
+.logo-indra {
+  width: 6rem;
+  margin-left: 1rem;
+}
+
+.drop {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  bottom: 0px;
+}

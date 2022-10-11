@@ -4,6 +4,7 @@ import { ClientesService } from 'src/app/services/clientes.service';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { ClienteFormComponent } from '../../components/cliente-form/cliente-form.component';
 import { tiposMetodos } from '../../enums/tipos-metodos.enum';
+import { ConfirmModalComponent } from '../../components/confirm-modal/confirm-modal.component';
 
 @Component({
   selector: 'app-clientes',
@@ -11,6 +12,7 @@ import { tiposMetodos } from '../../enums/tipos-metodos.enum';
   styleUrls: ['./clientes.component.css'],
 })
 export class ClientesComponent implements OnInit {
+  p: number = 1;
   clientes: ICliente[] = [];
   loading: boolean = false;
   tiposMetodos = tiposMetodos;
@@ -35,19 +37,6 @@ export class ClientesComponent implements OnInit {
       });
   }
 
-  deletarcliente(id: number) {
-    this.loading = true;
-    this.clienteService.deletarCliente(id).subscribe(
-      (clientes: ICliente) => {
-        this.loading = false;
-        this.buscarTodosClientes();
-      },
-      (error) => {
-        this.loading = false;
-      }
-    );
-  }
-
   openModalComponent(
     tipo: string,
     id?: number,
@@ -68,16 +57,32 @@ export class ClientesComponent implements OnInit {
     const initalStateCadastrar = {
       title: tipo,
     };
+    const initialStateDeletar = {
+      id
+    };
+
+
     if (tipo === tiposMetodos.CADASTRAR) {
       this.modalRef = this.bsModalService.show(ClienteFormComponent, {
         initialState: initalStateCadastrar,
         class: 'my-modal',
       });
-    } else {
+    }
+    if (tipo === tiposMetodos.DELETAR) {
+      this.modalRef = this.bsModalService.show(ConfirmModalComponent, {
+        initialState: initialStateDeletar,
+        class: 'my-modal',
+      });
+    }
+
+    else {
       this.modalRef = this.bsModalService.show(ClienteFormComponent, {
         initialState: initalStateEditar,
         class: 'my-modal',
       });
     }
   }
+
+
+
 }

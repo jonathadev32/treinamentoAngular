@@ -1,0 +1,141 @@
+<th>
+  <div
+    class="d-flex flex-column flex-shrink-0 p-3 text-white background"
+    style="width: 180px"
+  >
+    <img
+      src="/assets/logoindra.png"
+      alt="LogoMarca-Indra"
+      class="logo-indra"
+      routerLink="/home"
+    />
+
+    <hr />
+
+    <ul class="navbar-nav flex-column mb-auto">
+      <li>
+        <button
+          class="btn text-white mb-1"
+          routerLink="/home"
+          routerLinkActive="active"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            fill="currentColor"
+            class="bi bi-house-door-fill mb-1 mx-1"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M6.5 14.5v-3.505c0-.245.25-.495.5-.495h2c.25 0 .5.25.5.5v3.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5z"
+            />
+          </svg>
+          Home
+        </button>
+      </li>
+      <li class="nav-item">
+        <button
+          class="btn text-white mb-1"
+          routerLink="/clientes"
+          routerLinkActive="active"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            fill="currentColor"
+            class="bi bi-person-fill mb-1 mx-1"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"
+            />
+          </svg>
+          Clientes
+        </button>
+      </li>
+      <li class="nav-item">
+        <button
+          class="btn text-white mb-1"
+          routerLink="/contas"
+          routerLinkActive="active"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            fill="currentColor"
+            class="bi bi-c-circle-fill mb-1 mx-1"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0ZM8.146 4.992c.961 0 1.641.633 1.729 1.512h1.295v-.088c-.094-1.518-1.348-2.572-3.03-2.572-2.068 0-3.269 1.377-3.269 3.638v1.073c0 2.267 1.178 3.603 3.27 3.603 1.675 0 2.93-1.02 3.029-2.467v-.093H9.875c-.088.832-.75 1.418-1.729 1.418-1.224 0-1.927-.891-1.927-2.461v-1.06c0-1.583.715-2.503 1.927-2.503Z"
+            />
+          </svg>
+          Contas
+        </button>
+      </li>
+
+      <li class="nav-item">
+        <button
+          class="btn text-white mb-1"
+          routerLink="/operacoes"
+          routerLinkActive="active"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            fill="currentColor"
+            class="bi bi-credit-card-fill mb-1 mx-1"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v1H0V4zm0 3v5a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7H0zm3 2h1a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-1a1 1 0 0 1 1-1z"
+            />
+          </svg>
+          Operações
+        </button>
+      </li>
+    </ul>
+    <hr />
+    <div class="dropdown drop">
+      <a
+        href="#"
+        class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
+        id="dropdownUser1"
+        data-bs-toggle="dropdown"
+        aria-expanded="false"
+      >
+        <img
+          src="https://github.com/jonathadev32.png"
+          alt=""
+          width="32"
+          height="32"
+          class="rounded-circle me-2"
+        />
+        Jonatha
+      </a>
+      <ul
+        class="dropdown-menu dropdown-menu-dark text-small shadow"
+        aria-labelledby="dropdownUser1"
+      >
+        <li>
+          <a class="dropdown-item" (click)="logout()">
+            <img
+              class="out--icon"
+              style="width: 17px"
+              src="assets/right-from-bracket-solid.svg"
+              alt="out"
+            />
+            Sair</a
+          >
+        </li>
+      </ul>
+    </div>
+  </div>
+</th>
+<th>
+  <router-outlet></router-outlet>
+</th>

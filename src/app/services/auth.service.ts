@@ -14,19 +14,23 @@ export class AuthService {
 
   constructor(private http: HttpClient, private router: Router) {}
 
-  public signIn(data: any): Observable<any> {
-    return this.http.post<any>(`${this.api}/${this.endpoint}`, data).pipe(
-      tap((res) => {
-        if (res) {
-          localStorage.setItem('access_token', res);
-          this.router.navigate(['home']);
-        }
-      }),
-      catchError((e) => {
-        if (e.error.message) return throwError(() => e.error.message);
-        return throwError(() => ALERT_MESSAGE.ERROR_SIGNIN);
-      })
-    );
+  public signIn(loginESenha: any): Observable<any> {
+    return this.http
+      .post<any>(`${this.api}/${this.endpoint}`, loginESenha)
+      .pipe(
+        // chamei um pipe do rxjs e o tap para pegar
+        // o result e grava o token no localStorage
+        tap((token) => {
+          if (token) {
+            localStorage.setItem('access_token', token);
+            this.router.navigate(['home']);
+          }
+        }),
+        catchError((e) => {
+          if (e.error.message) return throwError(() => e.error.message);
+          return throwError(() => ALERT_MESSAGE.ERROR_SIGNIN);
+        })
+      );
   }
 
   public isAuthenticated(): boolean {
@@ -38,7 +42,7 @@ export class AuthService {
   }
 
   public logout() {
-    localStorage.removeItem('acess_token');
+    localStorage.removeItem('access_token');
     return this.router.navigate(['']);
   }
 }

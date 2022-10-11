@@ -4,6 +4,9 @@ import { ContasService } from 'src/app/services/contas.service';
 import { ClientesService } from '../../services/clientes.service';
 import { ICliente } from '../../interfaces/cliente';
 import { BsModalRef } from 'ngx-bootstrap/modal';
+import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
+import { IConta } from 'src/app/interfaces/conta';
 
 @Component({
   selector: 'app-conta-form',
@@ -12,20 +15,24 @@ import { BsModalRef } from 'ngx-bootstrap/modal';
 })
 export class ContaFormComponent implements OnInit {
   loading: boolean = false;
-  success: boolean = false;
-  error: boolean = false;
   id: number = 0;
   agencia: string = '';
   numero: string = '';
   saldo: number = 0;
   title: string = '';
   cliente: any;
+  isDisabled = true;
+  clienteList: ICliente[] = [];
+  default: string = 'Clientes';
+  contas: IConta[] = [];
 
   constructor(
     private formBuilder: NonNullableFormBuilder,
     private contasService: ContasService,
     private clientesService: ClientesService,
-    private modalRef: BsModalRef
+    private modalRef: BsModalRef,
+    private toaster: ToastrService,
+    private router: Router
   ) {}
 
   form = this.formBuilder.group({
@@ -38,6 +45,8 @@ export class ContaFormComponent implements OnInit {
   });
 
   ngOnInit(): void {
+    this.buscarClientes();
+
     if (this.cliente) {
       this.form.setValue({
         id: this.id,
@@ -48,6 +57,15 @@ export class ContaFormComponent implements OnInit {
         ativo: true,
       });
     }
+  }
+
+  buscarClientes() {
+    this.clientesService.listarTodosClientes().subscribe((result: any) => {
+      console.log(result);
+      result.map((res: any) => {
+        this.clienteList.push(res);
+      });
+    });
   }
 
   buscarClientePorNome() {
@@ -69,31 +87,24 @@ export class ContaFormComponent implements OnInit {
       this.contasService.save(this.form.value, this.cliente).subscribe(
         (result: any) => {
           this.loading = false;
-
           this.form.reset();
 
-          this.success = true;
-
-          setTimeout(() => {
-            this.success = false;
-          }, 3000);
+          this.toaster.success('Operação realizada com sucesso!', '', {
+            timeOut: 2000,
+          });
+          this.fecharModal();
         },
         (error) => {
           this.loading = false;
-          this.error = true;
-
-          setTimeout(() => {
-            this.error = false;
-            this.form.reset();
-          }, 3000);
+          this.toaster.error('Não foi possível realizar a operação!', '', {
+            timeOut: 2000,
+          });
         }
       );
     } else {
-      this.error = true;
-      setTimeout(() => {
-        this.error = false;
-        this.form.reset();
-      }, 3000);
+      this.toaster.error('Não foi possível realizar a operação!', '', {
+        timeOut: 2000,
+      });
     }
   }
 

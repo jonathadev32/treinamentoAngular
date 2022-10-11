@@ -1,46 +1,53 @@
-<div class="card card-tam">
-  <div class="card-body">
-    <form [formGroup]="form">
-      <img src="/assets/minsait.png" alt="logo minsait" />
-
-      <div class="form-outline mt-4">
-        <label class="form-label" for="form2Example1">Login*</label>
-        <input
-          type="email"
-          id="email"
-          class="form-control"
-          formControlName="email"
-        />
+<!-- Page content -->
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="card shadow border-0">
+      <div class="card-body px-lg-8 py-lg-6">
+        <div class="text-center text-muted mb-4">
+          <img class="processo-logo" src="assets/processo.png" alt="logo" />
+        </div>
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+          <div class="form-group mb-3">
+            <div class="input-group input-group-alternative">
+              <div class="input-group-prepend">
+                <span class="input-group-text"
+                  ><i class="ni ni-circle-08"></i
+                ></span>
+              </div>
+              <input
+                type="text"
+                formControlName="email"
+                name="email"
+                class="form-control pl-2"
+                nbInput
+                fullWidth
+                placeholder="Email"
+              />
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="input-group input-group-alternative">
+              <div class="input-group-prepend">
+                <span class="input-group-text"
+                  ><i class="ni ni-lock-circle-open"></i
+                ></span>
+              </div>
+              <input
+                type="password"
+                formControlName="password"
+                name="password"
+                class="form-control pl-2"
+                nbInput
+                fullWidth
+                placeholder="Senha"
+              />
+            </div>
+          </div>
+          <div class="text-center">
+            <button type="submit" class="btn btn-theme my-4">Entrar</button>
+          </div>
+        </form>
       </div>
-
-      <div class="form-outline mb-3">
-        <label class="form-label" for="form2Example2">Senha*</label>
-        <input
-          type="password"
-          id="password"
-          class="form-control"
-          formControlName="password"
-        />
-      </div>
-
-      <div class="row mb-3">
-        <div class="col d-flex justify-content-center"></div>
-      </div>
-
-      <button
-        (click)="onSubmit()"
-        type="button"
-        class="btn btn-primary btn-block mb-4"
-      >
-        Login
-      </button>
-      <div
-        class="spinner-border spinner-border-sm"
-        role="status"
-        *ngIf="loading"
-      >
-        <span class="visually-hidden">Loading...</span>
-      </div>
-    </form>
+    </div>
   </div>
 </div>

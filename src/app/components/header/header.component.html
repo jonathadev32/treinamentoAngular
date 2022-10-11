@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark" >
+<!-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
     <a class="navbar-brand" routerLink="/home">Minsait</a>
     <button
@@ -13,9 +13,11 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      <ul class="navbar-nav align-items-center d-none d-md-flex">
         <li class="nav-item">
-          <a class="nav-link" routerLink="/home" routerLinkActive="active">Início</a>
+          <a class="nav-link" routerLink="/home" routerLinkActive="active"
+            >Início</a
+          >
         </li>
         <li class="nav-item">
           <a class="nav-link" routerLink="/clientes" routerLinkActive="active"
@@ -27,7 +29,29 @@
             >Contas</a
           >
         </li>
+
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/operacoes" routerLinkActive="active"
+            >Operações</a
+          >
+        </li>
+        <li class="nav-item ml-4" ngbDropdown placement="bottom-right">
+          <a class="nav-link pr-0" role="button" ngbDropdownToggle>
+            <div class="media align-items-center">
+              <img
+                class="out--icon"
+                src="assets/right-from-bracket-solid.svg"
+                alt="out"
+              />
+              <div class="media-body ml-2 d-none d-lg-block">
+                <span class="mb-0 text-sm font-weight-bold" (click)="logout()"
+                  >Sair</span
+                >
+              </div>
+            </div>
+          </a>
+        </li>
       </ul>
     </div>
   </div>
-</nav>
+</nav> -->

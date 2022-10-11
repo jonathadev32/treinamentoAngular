@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { NonNullableFormBuilder, Validators } from '@angular/forms';
 import { BsModalRef } from 'ngx-bootstrap/modal';
+import { ToastrService } from 'ngx-toastr';
 import { ClientesService } from '../../services/clientes.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cliente-form',
@@ -10,8 +12,6 @@ import { ClientesService } from '../../services/clientes.service';
 })
 export class ClienteFormComponent implements OnInit {
   loading: boolean = false;
-  success: boolean = false;
-  error: boolean = false;
   id: number = 0;
   nome: string = '';
   cpf: string = '';
@@ -22,14 +22,16 @@ export class ClienteFormComponent implements OnInit {
   constructor(
     private formBuilder: NonNullableFormBuilder,
     private clientesService: ClientesService,
-    private modalRef: BsModalRef
+    private modalRef: BsModalRef,
+    private toaster: ToastrService,
+    private router: Router
   ) {}
 
   form = this.formBuilder.group({
     id: 0,
     nome: ['', [Validators.required]],
     cpf: ['', [Validators.required]],
-    email: ['', [Validators.required]],
+    email: ['', [Validators.required, Validators.email]],
     observacoes: [''],
     ativo: true,
   });
@@ -53,29 +55,22 @@ export class ClienteFormComponent implements OnInit {
           this.loading = false;
 
           this.form.reset();
-
-          this.success = true;
-
-          setTimeout(() => {
-            this.success = false;
-          }, 3000);
+          this.fecharModal();
+          this.toaster.success('Operação realizada com sucesso!', '', {
+            timeOut: 2000,
+          });
         },
         (error) => {
           this.loading = false;
-          this.error = true;
-
-          setTimeout(() => {
-            this.error = false;
-            this.form.reset();
-          }, 3000);
+          this.toaster.error('Não foi possível realizar a operação!', '', {
+            timeOut: 2000,
+          });
         }
       );
     } else {
-      this.error = true;
-      setTimeout(() => {
-        this.error = false;
-        this.form.reset();
-      }, 3000);
+      this.toaster.error('Não foi possível realizar a operação!', '', {
+        timeOut: 2000,
+      });
     }
   }
 

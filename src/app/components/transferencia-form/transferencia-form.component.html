@@ -1,0 +1,82 @@
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title text-center">{{ title }}</h5>
+    <form [formGroup]="form">
+      <table>
+        <th>
+          <div class="mx-3 mt-4 mb-3">
+            <label for="agenciaOrigem" class="form-label">Agencia-Origem</label>
+            <input
+              type="text"
+              class="form-control"
+              id="agenciaOrigem"
+              formControlName="agenciaOrigem"
+            />
+          </div>
+          <div class="mx-3 mt-2 mb-3">
+            <label for="numeroContaOrigem" class="form-label"
+              >Conta-Origem</label
+            >
+            <input
+              type="text"
+              class="form-control"
+              id="numeroContaOrigem"
+              formControlName="numeroContaOrigem"
+            />
+          </div>
+        </th>
+        <th>
+          <div class="mt-4 mb-3">
+            <label for="agenciaDestino" class="form-label"
+              >Agencia-Destino</label
+            >
+            <input
+              type="text"
+              class="form-control"
+              id="agenciaDestino"
+              formControlName="agenciaDestino"
+            />
+          </div>
+          <div class="">
+            <label for="numeroContaDestino" class="form-label"
+              >Conta-Destino</label
+            >
+            <input
+              type="text"
+              class="form-control"
+              id="numeroContaDestino"
+              formControlName="numeroContaDestino"
+            />
+          </div>
+        </th>
+      </table>
+      <div class="mb-4">
+        <label for="valor" class="form-label text-">Valor</label>
+        <input
+          type="number"
+          class="form-control"
+          id="valor"
+          formControlName="valor"
+        />
+      </div>
+
+      <button
+        type="submit"
+        class="btn btn-primary"
+        (click)="onSubmitTransferencia()"
+      >
+        Transferir
+        <div
+          class="spinner-border spinner-border-sm"
+          role="status"
+          *ngIf="loading"
+        >
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      </button>
+      <button type="submit" class="btn btn-danger mx-2" (click)="fecharModal()">
+        Sair
+      </button>
+    </form>
+  </div>
+</div>

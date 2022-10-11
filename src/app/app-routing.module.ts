@@ -5,34 +5,44 @@ import { HomeComponent } from './pages/home/home.component';
 import { ContasComponent } from './pages/contas/contas.component';
 import { LoginComponent } from './pages/auth/login/login.component';
 import { AuthGuard } from './core/guard/auth.guard';
+import { OperacoesComponent } from './pages/operacoes/operacoes.component';
+import { ExtratoComponent } from './pages/extrato/extrato.component';
 
 const routes: Routes = [
-  { path: '', pathMatch: 'full', redirectTo: 'login' },
-
-  {
-    path: 'login',
-    component: LoginComponent,
-  },
-
   {
     path: 'home',
-    canActivateChild: [AuthGuard],
+    canActivate: [AuthGuard],
     component: HomeComponent,
   },
   {
     path: 'clientes',
-    canActivateChild: [AuthGuard],
+    canActivate: [AuthGuard],
     component: ClientesComponent,
   },
   {
     path: 'contas',
-    canActivateChild: [AuthGuard],
+    canActivate: [AuthGuard],
     component: ContasComponent,
   },
+  {
+    path: 'operacoes',
+    canActivate: [AuthGuard],
+    component: OperacoesComponent,
+  },
+  {
+    path: 'extrato',
+    canActivate: [AuthGuard],
+    component: ExtratoComponent,
+  },
+  {
+    path: 'login',
+    component: LoginComponent,
+  },
+  { path: '', pathMatch: 'full', redirectTo: 'login' },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { onSameUrlNavigation: 'reload' })],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}

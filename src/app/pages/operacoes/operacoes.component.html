@@ -1,0 +1,63 @@
+<div class="row m-2">
+  <div class="col">
+    <div class="card mb-4 rounded-3 shadow-sm my-0 fw-normal">
+      <h4 class="my-0 fw-normal text-white"></h4>
+      <div class="card-body bg-light">
+        <p>
+          <img
+            class="imgCartoes"
+            src="./assets/CARTAO DE DEBITO.png"
+            alt="Cartão de Débito"
+            (click)="openModalComponentDeposito()"
+          />
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="card mb-4 rounded-3 shadow-sm">
+      <h4 class="my-0 fw-normal text-white"></h4>
+      <div class="card-body bg-light">
+        <p>
+          <img
+            class="imgCartoes"
+            src="./assets/SAQUE.png"
+            alt="Cartão de Débito"
+            (click)="openModalComponentSaque()"
+          />
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="card mb-4 rounded-3 shadow-sm">
+      <h4 class="my-0 fw-normal text-white"></h4>
+      <div class="card-body bg-light">
+        <p>
+          <img
+            class="imgCartoes"
+            src="./assets/TRANSFERENCIA.png"
+            alt="Cartão de Débito"
+            (click)="openModalComponentTransferencia()"
+          />
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="col justify-content-center">
+    <div class="card mb-4 rounded-3 shadow-sm card-extrato">
+      <h4 class="my-0 fw-normal text-white"></h4>
+
+      <div class="card-body bg-light">
+        <p>
+          <img
+            class="imgCartoes"
+            src="./assets/EXTRATO.png"
+            alt="Cartão de Débito"
+            routerLink="/extrato"
+          />
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

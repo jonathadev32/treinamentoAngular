@@ -1,9 +1,8 @@
 .spinner-align {
   display: block;
   position: fixed;
-  z-index: 1031;
   top: 50%;
-  right: 50%;
+  right: 42%;
 }
 
 .btn-excluir {
@@ -12,4 +11,19 @@
 
 .btn-editar {
   cursor: pointer;
+}
+
+.align--contas {
+  text-align: center;
+}
+
+table th,
+td {
+  text-align: center;
+}
+
+.card {
+  width: 1100px !important;
+  margin-left: 2.8rem;
+
 }
